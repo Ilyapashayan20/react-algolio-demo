@@ -128,3 +128,37 @@ select{
 .ais-RefinementList-list li {
  border-bottom:2px solid gray;
 }
+
+
+.product-details {
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 200px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.product-details h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.product-details img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.product-details p {
+  font-size: 1.2em;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+
+.router_link{
+  margin-top: 20px;
+}
