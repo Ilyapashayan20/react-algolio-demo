@@ -1,5 +1,5 @@
 import algoliasearch from 'algoliasearch';
-import {  Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 
 import {
@@ -16,34 +16,46 @@ import {
 
 const searchClient = algoliasearch(
   'AIWCS83VN4',
-  'f8c9f3dd411497369fc417531c56fad7',
+  '7b4db665057be4713aa278a4c829233a',
 );
 
 function Home() {
-  const [index, setIndex] = useState(null);
+  // const [index, setIndex] = useState(null);
 
-  useEffect(() => {
-    const initIndex = async () => {
-       const algoliaIndex =  searchClient.initIndex('ukpt_proddefault_products');
-      setIndex(algoliaIndex);
-    };
-    initIndex();
-  }, []);
+  // useEffect(() => {
+  //   const initIndex = async () => {
+  //     try {
+  //       const algoliaIndex = searchClient.initIndex('ukpt_proddefault_products');
+  //       setIndex(algoliaIndex);
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
+  //   initIndex();
+  // }, []);
 
-  useEffect(() => {
-    if (index) {
-      index.setSettings({
-        searchableAttributes: [
-          'categories',
-          'price',
-          'manufacture',
-          'drill_type',
-          'barcode',
-          'type',
-        ],
-      });
-    }
-  }, [index]);
+  // useEffect(() => {
+  //   if (index) {
+  //     index.setSettings({
+  //       searchableAttributes: [
+  //         'categories',
+  //         'price',
+  //         'manufacture',
+  //         'drill_type',
+  //         'barcode',
+  //         'type',
+  //       ],
+  //     })
+  //       .then(() => {
+  //         console.log('Setting searchable attributes');
+  //       })
+  //       .catch(err => {
+  //         console.log(err);
+  //       });
+  //   }
+  // }, [index]);
+
+  // console.log(index)
 
   return (
     <div className="App">
@@ -68,6 +80,7 @@ function Home() {
               />
               <div>
                 <h3>categories</h3>
+              
               <RefinementList attribute="categories.level0" />
               </div>
               <div>
@@ -76,7 +89,7 @@ function Home() {
               </div>
               <div>
                 <h3>Manufacture</h3>
-              <RefinementList attribute="manufacture" />
+              <RefinementList attribute="manufacturer" />
               </div>
               <div>
               <h3>Barcode</h3>
