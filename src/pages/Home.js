@@ -1,8 +1,10 @@
 import algoliasearch from 'algoliasearch';
 import { Link } from 'react-router-dom';
+import React from 'react';
+
 // import {  useLocation } from 'react-router-dom';
-import { Configure, SortBy, RefinementList, Highlight, Hits, InstantSearch, Pagination, SearchBox, } from 'react-instantsearch-dom';
-// import { useEffect , useState} from 'react';
+import { Configure, NumericMenu, SortBy, RefinementList, Highlight, Hits, InstantSearch, Pagination, SearchBox, } from 'react-instantsearch-dom';
+import { useEffect, useState } from 'react';
 
 const searchClient = algoliasearch(
   'AIWCS83VN4',
@@ -12,13 +14,34 @@ const searchClient = algoliasearch(
 
 function Home() {
 
+  const [index, setIndex] = useState(null);
+
+
+  useEffect(() => {
+    const initIndex = async () => {
+      const algoliaIndex = searchClient.initIndex('ukpt_proddefault_products');
+      setIndex(algoliaIndex);
+    };
+    initIndex();
+  }, [searchClient]);
+
+  useEffect(() => {
+    if (index) {
+      index.setSettings({
+        searchableAttributes: ['categories', 'price', 'drill_type', 'barcode', 'type'],
+      });
+    }
+  }, [index]);
+
+  console.log(index)
+
   return (
     <div className="App">
       <header className="App-header">
       </header>
       <div>
-        <InstantSearch searchClient={searchClient} >
-          
+        <InstantSearch searchClient={searchClient} indexName="ukpt_proddefault_products" >
+
 
           <div className='main' >
             <div>Search
@@ -31,7 +54,21 @@ function Home() {
                   { value: 'ukpt_proddefault_products_price_desc', label: 'Price desc.' },
                 ]}
               />
-              <RefinementList attribute="manufacturer" />
+              <NumericMenu
+                attribute="price"
+                items={[
+                  { label: 'All' },
+
+                ]}
+              />
+              <RefinementList attribute="categories.level0" />
+              <hr></hr>
+              <RefinementList attribute="drill_type" />
+              <hr></hr>
+              <RefinementList attribute="barcode" />
+              <hr></hr>
+              <RefinementList attribute="type" />
+
             </div>
 
             <div>
@@ -49,9 +86,6 @@ function Home() {
 }
 
 function Product({ hit }) {
-
-  console.log(hit)
-
   return (
 
     <div className='product'>

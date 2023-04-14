@@ -23,7 +23,7 @@ function ProductDetails() {
   }, [id]);
 
   if (!product) {
-    return <div>Loading...</div>;
+    return <div className=''>Loading...</div>;
   }
 
   return (
