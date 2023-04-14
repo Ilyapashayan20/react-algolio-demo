@@ -1,61 +1,30 @@
+import React from 'react';
 import algoliasearch from 'algoliasearch';
 import { Link } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
-
+import CustomRangeSlider from '../components/RangeSlider';
 import {
   Configure,
   Highlight,
   Hits,
   InstantSearch,
-  NumericMenu,
   Pagination,
   RefinementList,
   SearchBox,
   SortBy,
 } from 'react-instantsearch-dom';
 
+
+
+
 const searchClient = algoliasearch(
   'AIWCS83VN4',
   '7b4db665057be4713aa278a4c829233a',
 );
 
+
+
 function Home() {
-  // const [index, setIndex] = useState(null);
 
-  // useEffect(() => {
-  //   const initIndex = async () => {
-  //     try {
-  //       const algoliaIndex = searchClient.initIndex('ukpt_proddefault_products');
-  //       setIndex(algoliaIndex);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
-  //   initIndex();
-  // }, []);
-
-  // useEffect(() => {
-  //   if (index) {
-  //     index.setSettings({
-  //       searchableAttributes: [
-  //         'categories',
-  //         'price',
-  //         'manufacture',
-  //         'drill_type',
-  //         'barcode',
-  //         'type',
-  //       ],
-  //     })
-  //       .then(() => {
-  //         console.log('Setting searchable attributes');
-  //       })
-  //       .catch(err => {
-  //         console.log(err);
-  //       });
-  //   }
-  // }, [index]);
-
-  // console.log(index)
 
   return (
     <div className="App">
@@ -74,31 +43,32 @@ function Home() {
 
                 ]}
               />
-              <NumericMenu
-                attribute="price"
-                items={[{ label: 'All' }]}
+              <CustomRangeSlider
+                attribute="price.GBP.default"
+                min={0}
+                max={1000}
               />
               <div>
                 <h3>categories</h3>
-              
-              <RefinementList attribute="categories.level0" />
+
+                <RefinementList attribute="categories.level0" />
               </div>
               <div>
                 <h3>Drill Type</h3>
-              <RefinementList attribute="drill_type" />
+                <RefinementList attribute="drill_type" />
               </div>
               <div>
                 <h3>Manufacture</h3>
-              <RefinementList attribute="manufacturer" />
+                <RefinementList attribute="manufacturer" />
               </div>
               <div>
-              <h3>Barcode</h3>
-              <RefinementList attribute="barcode" />
+                <h3>Barcode</h3>
+                <RefinementList attribute="barcode" />
               </div>
               <div>
                 <hr />
-              <h3>Type</h3>
-              <RefinementList attribute="type" />
+                <h3>Type</h3>
+                <RefinementList attribute="type" />
               </div>
             </div>
 

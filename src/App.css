@@ -102,6 +102,10 @@ select{
   height: 40px;
   margin-top: 12px;
 }
+.rheostat{
+  margin-top: 20px;
+  
+}
 
 .ais-RefinementList-list{
   padding: 0;
@@ -161,4 +165,11 @@ select{
 
 .router_link{
   margin-top: 20px;
+}
+
+.prices_slider{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 12px;
 }

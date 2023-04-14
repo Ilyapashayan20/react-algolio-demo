@@ -8,11 +8,13 @@
     "@testing-library/user-event": "^13.5.0",
     "algoliasearch": "^4.17.0",
     "prop-types": "^15.8.1",
+    "rc-slider": "^10.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-instantsearch-dom": "^6.39.1",
     "react-router-dom": "^6.10.0",
     "react-scripts": "5.0.1",
+    "rheostat": "^4.1.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
